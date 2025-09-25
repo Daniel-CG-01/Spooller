@@ -1,8 +1,5 @@
 package net.ausiasmarch.connection;
 
-import java.sql.Connection;
-import java.sql.SQLException;
-
 import javax.sql.DataSource;
 
 import com.zaxxer.hikari.HikariConfig;

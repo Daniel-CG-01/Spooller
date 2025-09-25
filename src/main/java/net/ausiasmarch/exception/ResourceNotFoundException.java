@@ -1,6 +1,5 @@
-package net.ausiasmarch.exception;
+package net.ausiasmarch.exception; //Acabar
 
 public class ResourceNotFoundException {
-    
-    // ACABAR
+
 }

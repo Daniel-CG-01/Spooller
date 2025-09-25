@@ -1,15 +1,16 @@
-package net.ausiasmarch.dao;
+package net.ausiasmarch.dao; //Acabar
 
 import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 
+import net.ausiasmarch.exception.ResourceNotFoundException;
 import net.ausiasmarch.model.UsuarioBean;
 
 public class UsuarioDao {
 
-    private Connection oConnection = null;
+    private Connection oConnection;
 
     public UsuarioDao(Connection oConnection) {
         this.oConnection = oConnection;

@@ -1,4 +1,4 @@
-package net.ausiasmarch.model;
+package net.ausiasmarch.model; //Acabar
 
 public class UsuarioBean {
     private long id;
