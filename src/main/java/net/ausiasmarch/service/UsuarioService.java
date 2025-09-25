@@ -11,11 +11,11 @@ public class UsuarioService {
     
     public UsuarioBean get(Long id) throws Exception {
         // Es mejor crear la conexión a nivel de servicio y pasarla al DAO
-        Connection oConnection = HikariConfiguration.getConnection();
-
-        UsuarioDao oUsuarioDAO = new UsuarioDao(oConnection);
-        UsuarioBean oUsuarioBean = oUsuarioDAO.get(id);
+        try (Connection oConnection = HikariConfiguration.getPool().getConnection()){
+            UsuarioDao oUsuarioDao = new UsuarioDao(oConnection);
+            UsuarioBean oUsuarioBean = oUsuarioDao.get(id);
         
-        return oUsuarioBean;
+            return oUsuarioBean;
+        }
     }
 }

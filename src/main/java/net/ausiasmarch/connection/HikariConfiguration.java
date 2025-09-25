@@ -41,8 +41,4 @@ public class HikariConfiguration {
             webappPool.close();
         }
     }
-
-    public static Connection getConnection() throws SQLException {
-        return webappPool.getConnection();
-    }
 }
