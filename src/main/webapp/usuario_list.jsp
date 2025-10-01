@@ -9,7 +9,7 @@
     <title>Document</title>
 </head>
 <body>
-    <h1>Lista de Usuarios</h1>
+    <h1>LISTA DE USUARIOS</h1>
 
     <c:choose>
         <c:when test="${empty requestScope.usuarios}">

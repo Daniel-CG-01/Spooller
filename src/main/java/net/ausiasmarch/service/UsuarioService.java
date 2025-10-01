@@ -35,4 +35,11 @@ public class UsuarioService {
             return oUsuariosList;
         }
     }
+
+    public UsuarioBean insert(UsuarioBean oUsuario) throws SQLException {
+        try (Connection connection = HikariPool.getPool().getConnection()) {
+            UsuarioDao oUsuarioDao = new UsuarioDao(connection);
+            return oUsuarioDao.insert(oUsuario);
+        }
+    }
 }

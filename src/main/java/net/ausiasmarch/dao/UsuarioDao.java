@@ -59,4 +59,27 @@ public class UsuarioDao {
         System.out.println("[DEBUG] Usuarios recuperados: " + usuarios.size());
         return usuarios;
     }
+
+    public UsuarioBean insert(UsuarioBean oUsuarioBean) throws SQLException {
+        String strSQL = "INSERT INTO usuario (username, password, nombre, apellido1, apellido2) VALUES (?, ?, ?, ?, ?)";
+        try (PreparedStatement oPreparedStatement = this.oConnection.prepareStatement(strSQL, PreparedStatement.RETURN_GENERATED_KEYS)) {
+            oPreparedStatement.setString(1, oUsuarioBean.getUsername());
+            oPreparedStatement.setString(2, oUsuarioBean.getPassword());
+            oPreparedStatement.setString(3, oUsuarioBean.getNombre());
+            oPreparedStatement.setString(4, oUsuarioBean.getApellido1());
+            oPreparedStatement.setString(5, oUsuarioBean.getApellido2());
+            int rows = oPreparedStatement.executeUpdate();
+            if (rows == 0) {
+                throw new SQLException("La creación del nuevo usuario fallo. No se insertaron filas");
+            }
+            try (ResultSet generatedKeys = oPreparedStatement.getGeneratedKeys()) {
+                if (generatedKeys.next()) {
+                    oUsuarioBean.setId(generatedKeys.getLong(1));
+                } else {
+                    throw new SQLException("La creación del nuevo usuario fallo. No se obtuvo ningún id");
+                }
+            }
+        }
+        return oUsuarioBean;
+    }
 }
