@@ -40,38 +40,23 @@ public class UsuarioDao {
     }
 
     public List<UsuarioBean> getAll() throws SQLException {
-        // 1. Inicializar la lista que devolverás
         List<UsuarioBean> usuarios = new ArrayList<>();
-        
-        // 2. Definir la consulta SQL para seleccionar todos los usuarios
         String strSQL = "SELECT * FROM usuario";
-        
-        // 3. Preparar la consulta
         try (PreparedStatement oPreparedStatement = this.oConnection.prepareStatement(strSQL)) {
-            
-            // 4. Ejecutar la consulta
             try (ResultSet oResultSet = oPreparedStatement.executeQuery()) {
-                
-                // 5. Iterar sobre todos los resultados devueltos
                 while (oResultSet.next()) {
-                    
-                    // a. Crear un nuevo objeto por cada fila (registro)
                     UsuarioBean oUsuarioBean = new UsuarioBean();
-                    
-                    // b. Rellenar el objeto con los datos del ResultSet
                     oUsuarioBean.setId(oResultSet.getLong("id"));
                     oUsuarioBean.setUsername(oResultSet.getString("username"));
                     oUsuarioBean.setNombre(oResultSet.getString("nombre"));
                     oUsuarioBean.setApellido1(oResultSet.getString("apellido1"));
                     oUsuarioBean.setApellido2(oResultSet.getString("apellido2"));
-                    
-                    // c. Añadir el objeto a la lista
                     usuarios.add(oUsuarioBean);
                 }
             }
         }
-        
-        // 6. Devolver la lista
+        // Añadido para depuración
+        System.out.println("[DEBUG] Usuarios recuperados: " + usuarios.size());
         return usuarios;
     }
 }
